@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using r = Bysxiang.UipathExcelEx.Resources;
 
-namespace Bysxiang.UipathExcelEx.Atrributes
+namespace Bysxiang.UipathExcelEx.Attributes
 {
     internal class LocalDisplayNameAttribute : DisplayNameAttribute
     {
