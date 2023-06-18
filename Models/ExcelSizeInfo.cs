@@ -1,11 +1,10 @@
-﻿using Bysxiang.UipathExcelEx.utils;
-using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Bysxiang.UipathExcelEx.Utils;
+using excel = Microsoft.Office.Interop.Excel;
 namespace Bysxiang.UipathExcelEx.Models
 {
     public class ExcelSizeInfo
@@ -30,7 +29,7 @@ namespace Bysxiang.UipathExcelEx.Models
         {
             get
             {
-                return ExcelUtils.ToColumnName(Row + RowCount - 1);
+                return ExcelUtils.ToColumnName(Column + ColumnCount - 1);
             }
         }
 
@@ -44,7 +43,7 @@ namespace Bysxiang.UipathExcelEx.Models
 
         public ExcelSizeInfo() { }
 
-        public ExcelSizeInfo(Range range)
+        public ExcelSizeInfo(excel.Range range)
         {
             Row = range.Row;
             Column = range.Column;
