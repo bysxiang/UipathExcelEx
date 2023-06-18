@@ -57,14 +57,14 @@ namespace Bysxiang.UipathExcelEx.Helpers
         public static string GetWorkbookScopePropertyTag()
         {
             Type t = typeof(ExcelApplicationScope);
-            FieldInfo field = t.GetField("WorkbookScopePropertyTag", BindingFlags.Static | BindingFlags.NonPublic);
-            if (field != null)
+            PropertyInfo propertyInfo = t.GetProperty("WorkbookScopePropertyTag", BindingFlags.Static | BindingFlags.NonPublic);
+            if (propertyInfo != null)
             {
-                return field.GetValue(t) as string;
+                return propertyInfo.GetValue(t) as string;
             }
             else
             {
-                throw new Exception("当前版本不存在WorkbookScopePropertyTag字段");
+                throw new Exception("当前版本不存在WorkbookScopePropertyTag属性");
             }
         }
     }
