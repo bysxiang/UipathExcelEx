@@ -1,10 +1,10 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using excel = Microsoft.Office.Interop.Excel;
 
 namespace Bysxiang.UipathExcelEx.Models
 {
@@ -32,9 +32,9 @@ namespace Bysxiang.UipathExcelEx.Models
             BackgroundColor = Color.Black;
         }
 
-        public RowColumnInfo(Range range)
+        public RowColumnInfo(excel.Range range)
         {
-            Range mergeArea = range.MergeArea;
+            excel.Range mergeArea = range.MergeArea;
             BeginPosition = new CellPosition(mergeArea.Row, mergeArea.Column);
             CurrentPosition = new CellPosition(range.Row, range.Column);
             EndPosition = new CellPosition(mergeArea.Row + mergeArea.Rows.Count - 1,
