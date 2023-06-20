@@ -46,7 +46,7 @@
                                             ConverterParameter=In, ValidatesOnExceptions=true}" />
                 <sapv:ExpressionTextBox Grid.Column="2" Margin="10,0,0,0" HintText="Range" Width="160"
                               ExpressionType="{x:Type sys:String}"
-                              Expression="{Binding Path=ModelItem.Rangestr, Mode=TwoWay, Converter={StaticResource argConverter},
+                              Expression="{Binding Path=ModelItem.RangeStr, Mode=TwoWay, Converter={StaticResource argConverter},
                                             ConverterParameter=In, ValidatesOnExceptions=true}" />
 
                 <TextBlock Grid.Row="1" Grid.Column="0" LineHeight="20" Margin="0,5,0,5"
