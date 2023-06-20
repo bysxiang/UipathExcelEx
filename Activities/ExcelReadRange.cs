@@ -48,7 +48,7 @@ namespace Bysxiang.UipathExcelEx.Activities
                 }
                 catch (COMException ex)
                 {
-                    throw new ExcelException(string.Format(Excel_Activities.ExcelRangeException, ws.Name, rangeStr));
+                    throw new ExcelException(string.Format(Excel_Activities.ExcelRangeException, ws.Name, rangeStr), ex);
                 }
 
                 var list = ExcelUtils.GetCellList(regionRng);
