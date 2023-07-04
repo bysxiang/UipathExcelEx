@@ -29,10 +29,7 @@ namespace Bysxiang.UipathExcelEx.Models
 
         public bool IsValid => Row != 0 && Column != 0;
 
-        public string ExcelRangeName()
-        {
-            return string.Format("{0}{1}", ExcelUtils.ToColumnName(Column), Row);
-        }
+        public string ExcelRangeName => IsValid ? string.Format("{0}{1}", ExcelUtils.ToColumnName(Column), Row) : "";
 
         public override bool Equals(object obj)
         {
