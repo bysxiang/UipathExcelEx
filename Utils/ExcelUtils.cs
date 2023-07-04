@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -63,7 +64,11 @@ namespace Bysxiang.UipathExcelEx.Utils
             while (whichNum-- > 0)
             {
                 RowColumnInfo resultCell = InternalSearchValue(regionRng, after, search, func, out after);
-                Console.WriteLine("after: {0}", after?.Address);
+                //Console.WriteLine("after: {0}", after?.Address);
+                //if (after != null)
+                //{
+                //    Marshal.FinalReleaseComObject(after);
+                //}
                 if (!resultCell.IsValid)
                 {
                     return new RowColumnInfo();
@@ -89,33 +94,42 @@ namespace Bysxiang.UipathExcelEx.Utils
         public static RowColumnInfo InternalSearchValue(excel.Range regionRng, excel.Range after,
             string search, Func<RowColumnInfo, string, bool> func, out excel.Range resultRng)
         {
-            excel.Range firstCell = (excel.Range)regionRng.Cells[1];
-            string firstValue = firstCell.Value?.ToString() ?? "";
             excel.Range afterRng = (excel.Range)(after ?? regionRng.Cells[1]);
             RowColumnInfo afterCell = new RowColumnInfo(afterRng);
-            if (after == null && func(afterCell, firstValue))
+            if (after == null && func(afterCell, search))
             {
                 resultRng = after;
                 return afterCell;
             }
             else
             {
-                regionRng.Application.FindFormat.Clear();
+                excel.Application app = regionRng.Application;
+                excel.CellFormat findFormat = app.FindFormat;
+                findFormat?.Clear();
+                MarshalUtils.ReleaseComObject(ref findFormat);
+                MarshalUtils.ReleaseComObject(ref app);
+                
                 excel.Range result = null;
                 do
                 {
                     result = regionRng.Find(What: search, After: afterRng, LookIn: excel.XlFindLookIn.xlValues,
                         LookAt: excel.XlLookAt.xlPart);
+                    if (afterRng != null)
+                    {
+                        //Console.WriteLine("释放1");
+                        //MarshalUtils.ReleaseComObject(ref afterRng);
+                    }
                     if (result == null)
                     {
                         break;
                     }
                     else
                     {
-                        Console.WriteLine(result?.Address);
                         RowColumnInfo resultCell = new RowColumnInfo(result);
                         if (resultCell <= afterCell)
                         {
+                            //Console.WriteLine("释放2");
+                            //MarshalUtils.ReleaseComObject(ref result);
                             break;
                         }
                         if (resultCell > afterCell && func(resultCell, search))
