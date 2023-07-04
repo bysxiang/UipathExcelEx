@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bysxiang.UipathExcelEx.Utils;
 using excel = Microsoft.Office.Interop.Excel;
 
 namespace Bysxiang.UipathExcelEx.Models
@@ -27,8 +28,8 @@ namespace Bysxiang.UipathExcelEx.Models
             BeginPosition = new CellPosition();
             CurrentPosition = new CellPosition();
             EndPosition = new CellPosition();
-            Value = null;
-            Text = null;
+            Value = "";
+            Text = "";
             BackgroundColor = Color.Black;
         }
 
@@ -41,7 +42,8 @@ namespace Bysxiang.UipathExcelEx.Models
                 mergeArea.Column + mergeArea.Columns.Count - 1);
             Value = range.Value ?? "";
             Text = range.Text?.ToString() ?? "";
-            BackgroundColor = ColorTranslator.FromOle((int)range.DisplayFormat.Interior.Color);
+            int colorVal = Convert.ToInt32(range.DisplayFormat.Interior.Color);
+            BackgroundColor = ColorTranslator.FromOle(colorVal);
         }
 
         public RowColumnInfo(RowColumnInfo other)
@@ -69,6 +71,9 @@ namespace Bysxiang.UipathExcelEx.Models
             return hashCode;
         }
 
+        /// <summary>
+        /// 是否有效
+        /// </summary>
         public bool IsValid => BeginPosition.IsValid;
 
         public bool MergeCells => BeginPosition != EndPosition;
@@ -76,6 +81,33 @@ namespace Bysxiang.UipathExcelEx.Models
         public int RowCount => EndPosition.Row - BeginPosition.Row + 1;
 
         public int ColCount => EndPosition.Column - BeginPosition.Column + 1;
+
+        /// <summary>
+        /// 起点地址
+        /// </summary>
+        public string Address => BeginPosition.ExcelRangeName;
+
+        public string FullAddress
+        {
+            get
+            {
+                if (IsValid)
+                {
+                    if (BeginPosition != EndPosition)
+                    {
+                        return string.Format("{0}:{1}", BeginPosition.ExcelRangeName, EndPosition.ExcelRangeName);
+                    }
+                    else
+                    {
+                        return BeginPosition.ExcelRangeName;
+                    }
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
 
         /// <summary>
         /// 比较开始坐标
