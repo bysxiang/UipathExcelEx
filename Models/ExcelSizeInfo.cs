@@ -17,29 +17,11 @@ namespace Bysxiang.UipathExcelEx.Models
 
         public int ColumnCount { get; }
 
-        public string ColumnName
-        {
-            get
-            {
-                return ExcelUtils.ToColumnName(Column);
-            }
-        }
+        public string ColumnName => ExcelUtils.ToColumnName(Column);
 
-        public string EndColumnName
-        {
-            get
-            {
-                return ExcelUtils.ToColumnName(Column + ColumnCount - 1);
-            }
-        }
+        public string EndColumnName => ExcelUtils.ToColumnName(Column + ColumnCount - 1);
 
-        public string RangeStr
-        {
-            get
-            {
-                return string.Format("{0}{1}:{2}{3}", ColumnName, Row, EndColumnName, Row + RowCount - 1);
-            }
-        }
+        public string FullAddress => string.Format("{0}{1}:{2}{3}", ColumnName, Row, EndColumnName, Row + RowCount - 1);
 
         public ExcelSizeInfo() { }
 
