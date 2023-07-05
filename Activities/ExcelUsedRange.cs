@@ -20,7 +20,6 @@ namespace Bysxiang.UipathExcelEx.Activities
 
         public ExcelUsedRange():base()
         {
-            Console.WriteLine();
         }
 
         protected override Task<ExcelSizeInfo> ExecuteAsync(AsyncCodeActivityContext context, up.WorkbookApplication workbook)
@@ -36,7 +35,7 @@ namespace Bysxiang.UipathExcelEx.Activities
             }
             catch (COMException ex)
             {
-                throw new up.ExcelException(string.Format(Excel_Activities.ExcelUsedRangeException));
+                throw new up.ExcelException(string.Format(Excel_Activities.ExcelUsedRangeException), ex);
             }
         }
 
