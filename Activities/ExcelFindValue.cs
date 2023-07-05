@@ -38,7 +38,7 @@ namespace Bysxiang.UipathExcelEx.Activities
 
         [LocalizedCategory("Input")]
         [LocalDisplayName("ExcelFindValue_MatchFunc")]
-        public Func<RowColumnInfo, string, bool> MatchFunc { get; set; }
+        public InArgument<Func<RowColumnInfo, string, bool>> MatchFunc { get; set; }
 
         [LocalizedCategory("Output")]
         public OutArgument<RowColumnInfo> Result { get; set; }
@@ -53,10 +53,10 @@ namespace Bysxiang.UipathExcelEx.Activities
             string rangeStr = RangeStr.Get(context);
             string search = Search.Get(context);
             int whichNum = WhichNum.Get(context);
-            Func<RowColumnInfo, string, bool> func = MatchFunc;
+            Func<RowColumnInfo, string, bool> func = MatchFunc.Get(context);
             if (func == null)
             {
-                func = (cell, s) => cell.Value.ToString().Equals(s);
+                func = (cell, s) => cell.IsValid && (cell.Value ?? "").ToString().Equals(s);
             }
 
             return Task.Run(() =>
@@ -73,10 +73,11 @@ namespace Bysxiang.UipathExcelEx.Activities
                 }
                 catch (COMException ex)
                 {
-                    throw new ExcelException(string.Format(Excel_Activities.ExcelRangeException, ws.Name, rangeStr));
+                    throw new ExcelException(string.Format(Excel_Activities.ExcelRangeException, ws.Name, rangeStr), ex);
                 }
+                RowColumnInfo result = ExcelUtils.FindValue(regionRng, null, search, whichNum, func);
 
-                return ExcelUtils.FindValue(regionRng, null, search, whichNum, MatchFunc);
+                return result;
             });
         }
 
