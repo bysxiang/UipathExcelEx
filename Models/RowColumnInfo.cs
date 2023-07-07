@@ -36,12 +36,13 @@ namespace Bysxiang.UipathExcelEx.Models
         public RowColumnInfo(excel.Range range)
         {
             excel.Range mergeArea = range.MergeArea;
+            excel.Range firstCell = mergeArea.Cells[1] as excel.Range;
             BeginPosition = new CellPosition(mergeArea.Row, mergeArea.Column);
             CurrentPosition = new CellPosition(range.Row, range.Column);
             EndPosition = new CellPosition(mergeArea.Row + mergeArea.Rows.Count - 1,
                 mergeArea.Column + mergeArea.Columns.Count - 1);
-            Value = range.Value ?? "";
-            Text = range.Text?.ToString() ?? "";
+            Value = firstCell.Value ?? "";
+            Text =  firstCell.Text?.ToString() ?? "";
             int colorVal = Convert.ToInt32(range.DisplayFormat.Interior.Color);
             BackgroundColor = ColorTranslator.FromOle(colorVal);
         }
@@ -107,6 +108,26 @@ namespace Bysxiang.UipathExcelEx.Models
                     return "";
                 }
             }
+        }
+
+        /// <summary>
+        /// 是否是当前对象的子元素
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public bool Container(RowColumnInfo info)
+        {
+            return Container(info.CurrentPosition) && Container(info.EndPosition);
+        }
+
+        /// <summary>
+        /// 一个单元格坐标是否包含在当前对象中
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public bool Container(CellPosition position)
+        {
+            return position.IsValid && position >= BeginPosition && position <= EndPosition;
         }
 
         /// <summary>
