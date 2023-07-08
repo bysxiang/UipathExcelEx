@@ -154,10 +154,16 @@ namespace Bysxiang.UipathExcelEx.Utils
         /// <returns></returns>
         public static List<RowColumnInfo> GetCellList(excel.Range regionRng)
         {
+            int row = regionRng.Row;
+            int maxRow = regionRng.Row + regionRng.Rows.Count - 1;
+            int col = regionRng.Column;
+            int maxCol = regionRng.Column + regionRng.Columns.Count - 1;
             List<RowColumnInfo> list = new List<RowColumnInfo>();
             foreach (excel.Range cell in regionRng.Cells)
             {
-                if (cell.MergeArea.Row == cell.Row && cell.MergeArea.Column == cell.Column)
+                excel.Range mergeArea = cell.MergeArea;
+                if (mergeArea.Row >= row && mergeArea.Row + mergeArea.Rows.Count - 1 <= maxRow
+                    && mergeArea.Column >= col && mergeArea.Column + mergeArea.Columns.Count - 1 <= maxCol)
                 {
                     list.Add(new RowColumnInfo(cell));
                 }
