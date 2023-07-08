@@ -167,7 +167,18 @@ namespace Bysxiang.UipathExcelEx.Models
 
         public static bool operator ==(RowColumnInfo left, RowColumnInfo right)
         {
-            return left.BeginPosition.CompareTo(right.BeginPosition) == 0;
+            if (Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            else if (Object.ReferenceEquals(left, null) || Object.ReferenceEquals(right, null))
+            {
+                return false;
+            }
+            else
+            {
+                return left.BeginPosition.CompareTo(right.BeginPosition) == 0;
+            }
         }
 
         public static bool operator !=(RowColumnInfo left, RowColumnInfo right)
