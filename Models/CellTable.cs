@@ -56,8 +56,15 @@ namespace Bysxiang.UipathExcelEx.Models
                             {
                                 c = new RowColumnInfo(cell);
                                 mergeCellList.Add(c);
+                                _cells.Add(c);
                             }
-                            _cells.Add(c);
+                            else
+                            {
+                                RowColumnInfo cellInfo = new RowColumnInfo(cell);
+                                cellInfo.Value = c.Value;
+                                cellInfo.Text = c.Text;
+                                _cells.Add(c);
+                            }
                         }
                         else
                         {
