@@ -51,7 +51,7 @@ namespace Bysxiang.UipathExcelEx.Activities
                     throw new ExcelException(string.Format(Excel_Activities.ExcelRangeException, ws.Name, rangeStr), ex);
                 }
 
-                var list = ExcelUtils.GetCellList(regionRng);
+                var list = ExcelUtils.GetCellList(regionRng, true);
                 var table = new CellTable(list);
 
                 return table;
