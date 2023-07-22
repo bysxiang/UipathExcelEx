@@ -82,7 +82,7 @@ namespace Bysxiang.UipathExcelEx.Activities
                         this.SetResult(context, task.Result);
                         return;
                     }
-                    catch
+                    catch (OperationCanceledException)
                     {
                         context.MarkCanceled();
                         return;
