@@ -142,6 +142,87 @@ namespace Bysxiang.UipathExcelEx.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Sheet 的本地化字符串。
+        /// </summary>
+        internal static string ExcelSheet {
+            get {
+                return ResourceManager.GetString("ExcelSheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Cell Type 的本地化字符串。
+        /// </summary>
+        internal static string ExcelSpecialCells_CellType {
+            get {
+                return ResourceManager.GetString("ExcelSpecialCells_CellType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 All 的本地化字符串。
+        /// </summary>
+        internal static string ExcelSpecialCells_CellTypeAllFormatConditions {
+            get {
+                return ResourceManager.GetString("ExcelSpecialCells#CellTypeAllFormatConditions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Container Empty 的本地化字符串。
+        /// </summary>
+        internal static string ExcelSpecialCells_CellTypeBlanks {
+            get {
+                return ResourceManager.GetString("ExcelSpecialCells#CellTypeBlanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Container Comments 的本地化字符串。
+        /// </summary>
+        internal static string ExcelSpecialCells_CellTypeComments {
+            get {
+                return ResourceManager.GetString("ExcelSpecialCells#CellTypeComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Constants 的本地化字符串。
+        /// </summary>
+        internal static string ExcelSpecialCells_CellTypeConstants {
+            get {
+                return ResourceManager.GetString("ExcelSpecialCells#CellTypeConstants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Visble Cells 的本地化字符串。
+        /// </summary>
+        internal static string ExcelSpecialCells_CellTypeVisible {
+            get {
+                return ResourceManager.GetString("ExcelSpecialCells#CellTypeVisible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ExcelSpecialCells 的本地化字符串。
+        /// </summary>
+        internal static string ExcelSpecialCells_Name {
+            get {
+                return ResourceManager.GetString("ExcelSpecialCells_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Result List 的本地化字符串。
+        /// </summary>
+        internal static string ExcelSpecialCells_Result {
+            get {
+                return ResourceManager.GetString("ExcelSpecialCells_Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 ExcelUsedRange 的本地化字符串。
         /// </summary>
         internal static string ExcelUsedRange_Name {

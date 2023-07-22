@@ -145,10 +145,37 @@
   <data name="ExcelSearch" xml:space="preserve">
     <value>搜索的值</value>
   </data>
+  <data name="ExcelSpecialCells_Name" xml:space="preserve">
+    <value>ExcelSpecialCells</value>
+  </data>
   <data name="ExcelUsedRangeException" xml:space="preserve">
-    <value>无法获取UsedRange。</value>
+    <value>The UsedRange cannot be obtained</value>
   </data>
   <data name="ExcelUsedRange_Name" xml:space="preserve">
-    <value>Excel使用范围信息</value>
+    <value>ExcelUsedRange</value>
+  </data>
+  <data name="ExcelSpecialCells#CellTypeAllFormatConditions" xml:space="preserve">
+    <value>全部单元格</value>
+  </data>
+  <data name="ExcelSpecialCells#CellTypeBlanks" xml:space="preserve">
+    <value>空单元格</value>
+  </data>
+  <data name="ExcelSpecialCells#CellTypeComments" xml:space="preserve">
+    <value>包含注释的单元格</value>
+  </data>
+  <data name="ExcelSpecialCells#CellTypeConstants" xml:space="preserve">
+    <value>包含常量的单元格</value>
+  </data>
+  <data name="ExcelSpecialCells#CellTypeVisible" xml:space="preserve">
+    <value>显示的单元格</value>
+  </data>
+  <data name="ExcelSheet" xml:space="preserve">
+    <value>工作表名称</value>
+  </data>
+  <data name="ExcelSpecialCells_CellType" xml:space="preserve">
+    <value>单元格类型</value>
+  </data>
+  <data name="ExcelSpecialCells_Result" xml:space="preserve">
+    <value>结果列表</value>
   </data>
 </root>
