@@ -11,6 +11,10 @@ namespace Bysxiang.UipathExcelEx.Resources
     {
         private static ResourceManager rm = Resources.ResourceManager;
 
+        public static string ExcelSheet => rm.GetString(nameof(ExcelSheet));
+
+        public static string ExcelRange => rm.GetString(nameof(ExcelRange));
+
         public static string ExcelUsedRange_Name => rm.GetString(nameof(ExcelUsedRange_Name));
 
         public static string ExcelUsedRangeException => rm.GetString(nameof(ExcelUsedRangeException));
