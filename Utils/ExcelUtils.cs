@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Bysxiang.UipathExcelEx.Models;
+using Microsoft.Office.Interop.Excel;
 using excel = Microsoft.Office.Interop.Excel;
 
 namespace Bysxiang.UipathExcelEx.Utils
@@ -148,25 +149,74 @@ namespace Bysxiang.UipathExcelEx.Utils
         }
 
         /// <summary>
-        /// 获取一个Range的RowColumnInfo对象，这里仅取独立区域，被合并区域会被忽略
+        /// 获取一个Range的RowColumnInfo对象List
         /// </summary>
-        /// <param name="regionRng"></param>
+        /// <param name="regionRng">excel区域 - 连续区域</param>
+        /// <param name="containerSubCell">是否包含被合并区域</param>
         /// <returns></returns>
-        public static List<RowColumnInfo> GetCellList(excel.Range regionRng)
+        public static List<RowColumnInfo> GetCellList(excel.Range regionRng, bool containerSubCell = false)
         {
             int row = regionRng.Row;
             int maxRow = regionRng.Row + regionRng.Rows.Count - 1;
             int col = regionRng.Column;
             int maxCol = regionRng.Column + regionRng.Columns.Count - 1;
             List<RowColumnInfo> list = new List<RowColumnInfo>();
-            foreach (excel.Range cell in regionRng.Cells)
+            foreach (excel.Range cell in regionRng)
             {
                 excel.Range mergeArea = cell.MergeArea;
                 if (mergeArea.Row >= row && mergeArea.Row + mergeArea.Rows.Count - 1 <= maxRow
                     && mergeArea.Column >= col && mergeArea.Column + mergeArea.Columns.Count - 1 <= maxCol)
                 {
+                    if (containerSubCell)
+                    {
+                        list.Add(new RowColumnInfo(cell));
+                    }
+                    else if (mergeArea.Row == cell.Row && mergeArea.Column == cell.Column)
+                    {
+                        list.Add(new RowColumnInfo(cell));
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 获取一个Range的RowColumnInfo对象List
+        /// </summary>
+        /// <param name="cellsRng">非连续性的Range</param>
+        /// <returns></returns>
+        public static List<RowColumnInfo> GetCellListWithCells(excel.Range cellsRng)
+        {
+            List<RowColumnInfo> list = new List<RowColumnInfo>();
+            foreach (excel.Range cell in cellsRng)
+            {
+                excel.Range mergeArea = cell.MergeArea;
+                if (mergeArea.Row == cell.Row && mergeArea.Column == cell.Column)
+                {
                     list.Add(new RowColumnInfo(cell));
                 }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 获取指定的单元格类型
+        /// </summary>
+        /// <param name="regionRng"></param>
+        /// <param name="cellType"></param>
+        /// <returns></returns>
+        public static List<RowColumnInfo> GetSpecialCellList(excel.Range regionRng, XlCellType cellType)
+        {
+            List<RowColumnInfo> list = new List<RowColumnInfo>();
+            try
+            {
+                excel.Range result = regionRng.SpecialCells(cellType);
+                list = GetCellListWithCells(result);
+            }
+            catch (COMException)
+            {
             }
 
             return list;
