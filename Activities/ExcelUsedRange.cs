@@ -16,6 +16,7 @@ namespace Bysxiang.UipathExcelEx.Activities
     public sealed class ExcelUsedRange : ExcelExInteropActivity<ExcelSizeInfo>
     {
         [LocalizedCategory("Output")]
+        [LocalDisplayName("ExcelUsedRange_Result")]
         public OutArgument<ExcelSizeInfo> SizeInfo { get; set; }
 
         public ExcelUsedRange():base()
