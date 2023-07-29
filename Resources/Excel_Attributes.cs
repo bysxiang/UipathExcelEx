@@ -25,10 +25,14 @@ namespace Bysxiang.UipathExcelEx.Resources
 
         public static string ExcelFindValue_WhichNum => rm.GetString(nameof(ExcelFindValue_WhichNum));
 
+        public static string ExcelFindValue_AfterCell => rm.GetString(nameof(ExcelFindValue_AfterCell));
+
         public static string ExcelRangeException => rm.GetString(nameof(ExcelRangeException));
 
         public static string ExcelRangeEmptyException => rm.GetString(nameof(ExcelRangeEmptyException));
 
         public static string ExcelReadRange_Name => rm.GetString(nameof(ExcelReadRange_Name));
+
+        public static string ValidationMessageParents = rm.GetString(nameof(ValidationMessageParents));
     }
 }
