@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Activities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UiPath.Excel;
 using UiPath.Excel.Activities;
 using Bysxiang.UipathExcelEx.Helpers;
 using UiPath.Excel.Activities.Business;
 using UiPath.Excel.Activities.Properties;
+using Bysxiang.UipathExcelEx.Attributes;
+using Bysxiang.UipathExcelEx.Resources;
 
 namespace Bysxiang.UipathExcelEx.Activities
 {
@@ -17,25 +16,28 @@ namespace Bysxiang.UipathExcelEx.Activities
         protected bool CreateNew;
 
         [LocalizedCategory("Input")]
-        [LocalizedDisplayName("SheetNameDisplayName")]
+        [LocalDisplayName("ExcelSheet")]
         [RequiredArgument]
         public InArgument<string> SheetName { get; set; } = "Sheet1";
 
         protected ExcelExInteropActivity()
         {
 #if NET461
-            this.Constraints.Add(ActivityConstraintsHelper.GetCheckParentConstraint<ExcelExInteropActivity<T>>(typeof(ExcelApplicationScope).Name));
+            this.Constraints.Add(ActivityConstraintsHelper.GetCheckParentConstraint<ExcelExInteropActivity<T>>(new string[2]
+            {
+                typeof (ExcelApplicationScope).Name,
+                typeof (ExcelApplicationCard).Name
+            }, string.Format(Excel_Activities.ValidationMessageParents, typeof(ExcelApplicationScope).Name, typeof(ExcelApplicationCard).Name)));
 #else
             this.Constraints.Add(ActivityConstraintsHelper.GetCheckParentConstraint<ExcelExInteropActivity<T>>(new string[2]
             {
                 typeof (ExcelApplicationScope).Name,
                 typeof (ExcelApplicationCard).Name
-            }, string.Format(UiPath_Excel_Activities.ValidationMessageParents, (object)typeof(ExcelApplicationScope).Name, (object)typeof(ExcelApplicationCard).Name)));
+            }, string.Format(Excel_Activities.ValidationMessageParents, typeof(ExcelApplicationScope).Name, typeof(ExcelApplicationCard).Name)));
 #endif
-        this.SheetName = new InArgument<string>("Sheet1");
+            this.SheetName = new InArgument<string>("Sheet1");
         }
-
-        // 以下代码从Uipath.Excel.Activities中复制，用以兼容不同的版本
+        
         protected override IAsyncResult BeginExecute(AsyncCodeActivityContext context, AsyncCallback callback, 
             object state)
         {
