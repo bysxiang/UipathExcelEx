@@ -30,6 +30,10 @@ namespace Bysxiang.UipathExcelEx.Activities
         [LocalizedCategory("Input")]
         [LocalDisplayName("ExcelFindValue_Search")]
         public InArgument<string> Search { get; set; }
+        
+        [LocalizedCategory("Input")]
+        [LocalDisplayName("ExcelFindValue_AfterCell")]
+        public InArgument<string> AfterCell { get; set; }
 
         [RequiredArgument]
         [LocalizedCategory("Input")]
@@ -52,6 +56,7 @@ namespace Bysxiang.UipathExcelEx.Activities
         {
             string rangeStr = RangeStr.Get(context);
             string search = Search.Get(context);
+            string afterStr = AfterCell.Get(context);
             int whichNum = WhichNum.Get(context);
             Func<RowColumnInfo, string, bool> func = MatchFunc.Get(context);
             if (func == null)
@@ -75,7 +80,19 @@ namespace Bysxiang.UipathExcelEx.Activities
                 {
                     throw new ExcelException(string.Format(Excel_Activities.ExcelRangeException, ws.Name, rangeStr), ex);
                 }
-                RowColumnInfo result = ExcelUtils.FindValue(regionRng, null, search, whichNum, func);
+                excel.Range afterCell = null;
+                if (! string.IsNullOrWhiteSpace(afterStr))
+                {
+                    try
+                    {
+                        afterCell = ws.Range[afterStr];
+                    }
+                    catch (COMException ex)
+                    {
+                        throw new ExcelException(string.Format(Excel_Activities.ExcelRangeException, ws.Name, afterStr), ex);
+                    }
+                }
+                RowColumnInfo result = ExcelUtils.FindValue(regionRng, afterCell, search, whichNum, func);
 
                 return result;
             });
