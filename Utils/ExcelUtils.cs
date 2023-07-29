@@ -221,5 +221,16 @@ namespace Bysxiang.UipathExcelEx.Utils
 
             return list;
         }
+
+        public static List<WorksheetInfo> GetSheetList(excel.Workbook wb)
+        {
+            List<WorksheetInfo> list = new List<WorksheetInfo>();
+            foreach (excel.Worksheet ws in wb.Worksheets)
+            {
+                list.Add(new WorksheetInfo(ws.Name, ws.Visible));
+            }
+
+            return list;
+        }
     }
 }
