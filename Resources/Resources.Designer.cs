@@ -61,6 +61,15 @@ namespace Bysxiang.UipathExcelEx.Resources {
         }
         
         /// <summary>
+        ///   查找类似 search after cell 的本地化字符串。
+        /// </summary>
+        internal static string ExcelFindValue_AfterCell {
+            get {
+                return ResourceManager.GetString("ExcelFindValue_AfterCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 MatchFunc 的本地化字符串。
         /// </summary>
         internal static string ExcelFindValue_MatchFunc {
@@ -97,6 +106,15 @@ namespace Bysxiang.UipathExcelEx.Resources {
         }
         
         /// <summary>
+        ///   查找类似 ExcelGetSheetInfos 的本地化字符串。
+        /// </summary>
+        internal static string ExcelGetSheetInfos_Name {
+            get {
+                return ResourceManager.GetString("ExcelGetSheetInfos_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Excel Range 的本地化字符串。
         /// </summary>
         internal static string ExcelRange {
@@ -129,6 +147,15 @@ namespace Bysxiang.UipathExcelEx.Resources {
         internal static string ExcelReadRange_Name {
             get {
                 return ResourceManager.GetString("ExcelReadRange_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Result 的本地化字符串。
+        /// </summary>
+        internal static string ExcelResult {
+            get {
+                return ResourceManager.GetString("ExcelResult", resourceCulture);
             }
         }
         
@@ -232,11 +259,29 @@ namespace Bysxiang.UipathExcelEx.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Result 的本地化字符串。
+        /// </summary>
+        internal static string ExcelUsedRange_Result {
+            get {
+                return ResourceManager.GetString("ExcelUsedRange_Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 The UsedRange cannot be obtained 的本地化字符串。
         /// </summary>
         internal static string ExcelUsedRangeException {
             get {
                 return ResourceManager.GetString("ExcelUsedRangeException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Activity is valid only inside {0} or {1} 的本地化字符串。
+        /// </summary>
+        internal static string ValidationMessageParents {
+            get {
+                return ResourceManager.GetString("ValidationMessageParents", resourceCulture);
             }
         }
     }

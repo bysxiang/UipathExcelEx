@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExcelFindValue_AfterCell" xml:space="preserve">
+    <value>search after cell</value>
+  </data>
   <data name="ExcelFindValue_MatchFunc" xml:space="preserve">
     <value>MatchFunc</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="ExcelFindValue_WhichNum" xml:space="preserve">
     <value>WhichNum</value>
+  </data>
+  <data name="ExcelGetSheetInfos_Name" xml:space="preserve">
+    <value>ExcelGetSheetInfos</value>
   </data>
   <data name="ExcelRange" xml:space="preserve">
     <value>Excel Range</value>
@@ -141,6 +147,9 @@
   </data>
   <data name="ExcelReadRange_Name" xml:space="preserve">
     <value>ExcelReadRange</value>
+  </data>
+  <data name="ExcelResult" xml:space="preserve">
+    <value>Result</value>
   </data>
   <data name="ExcelSearch" xml:space="preserve">
     <value>Search Value</value>
@@ -177,5 +186,11 @@
   </data>
   <data name="ExcelUsedRange_Name" xml:space="preserve">
     <value>ExcelUsedRange</value>
+  </data>
+  <data name="ExcelUsedRange_Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="ValidationMessageParents" xml:space="preserve">
+    <value>Activity is valid only inside {0} or {1}</value>
   </data>
 </root>

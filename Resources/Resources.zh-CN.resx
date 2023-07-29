@@ -178,4 +178,19 @@
   <data name="ExcelSpecialCells_Result" xml:space="preserve">
     <value>结果列表</value>
   </data>
+  <data name="ExcelUsedRange_Result" xml:space="preserve">
+    <value>结果</value>
+  </data>
+  <data name="ExcelGetSheetInfos_Name" xml:space="preserve">
+    <value>获取所有工作表</value>
+  </data>
+  <data name="ExcelResult" xml:space="preserve">
+    <value>结果</value>
+  </data>
+  <data name="ValidationMessageParents" xml:space="preserve">
+    <value>活动仅在“{0}”或“{1}”中有效</value>
+  </data>
+  <data name="ExcelFindValue_AfterCell" xml:space="preserve">
+    <value>在单元格之后搜索</value>
+  </data>
 </root>
