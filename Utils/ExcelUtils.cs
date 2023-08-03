@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 using Bysxiang.UipathExcelEx.Models;
 using Microsoft.Office.Interop.Excel;
@@ -65,7 +64,6 @@ namespace Bysxiang.UipathExcelEx.Utils
             while (whichNum-- > 0)
             {
                 RowColumnInfo resultCell = InternalSearchValue(regionRng, after, search, func, out after);
-                //Console.WriteLine("after: {0}", after?.Address);
                 //if (after != null)
                 //{
                 //    Marshal.FinalReleaseComObject(after);
@@ -113,7 +111,7 @@ namespace Bysxiang.UipathExcelEx.Utils
                 excel.Range result = null;
                 do
                 {
-                    result = regionRng.Find(What: search, After: afterRng, LookIn: excel.XlFindLookIn.xlValues,
+                    result = regionRng.Find(What: search, After: afterRng, LookIn: excel.XlFindLookIn.xlValues, 
                         LookAt: excel.XlLookAt.xlPart);
                     if (afterRng != null)
                     {
@@ -133,7 +131,7 @@ namespace Bysxiang.UipathExcelEx.Utils
                             //MarshalUtils.ReleaseComObject(ref result);
                             break;
                         }
-                        if (resultCell > afterCell && func(resultCell, search))
+                        else if (resultCell > afterCell && func(resultCell, search))
                         {
                             resultRng = result;
                             return resultCell;
