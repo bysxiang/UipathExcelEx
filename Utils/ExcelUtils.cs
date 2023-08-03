@@ -95,8 +95,9 @@ namespace Bysxiang.UipathExcelEx.Utils
         {
             excel.Range afterRng = (excel.Range)(after ?? regionRng.Cells[1]);
             RowColumnInfo afterCell = new RowColumnInfo(afterRng);
-            if (after == null && func(afterCell, search))
+            if (after == null && afterCell.TryGetDateTimeValue(out DateTime time) && func(afterCell, search))
             {
+
                 resultRng = after;
                 return afterCell;
             }
