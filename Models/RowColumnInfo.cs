@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bysxiang.UipathExcelEx.Utils;
 using excel = Microsoft.Office.Interop.Excel;
 
 namespace Bysxiang.UipathExcelEx.Models
@@ -18,6 +14,47 @@ namespace Bysxiang.UipathExcelEx.Models
         public CellPosition EndPosition { get; }
 
         public object Value { get; set; }
+
+        public DateTime DateTimeValue
+        {
+            get
+            {
+
+                if (Value != null)
+                {
+                    if (Value.GetType() == typeof(DateTime))
+                    {
+                        return (DateTime)Value;
+                    }
+                    else if (Value.GetType() == typeof(double))
+                    {
+                        try
+                        {
+                            return DateTime.FromOADate((double)Value);
+                        }
+                        catch (OverflowException)
+                        {
+                            if (DateTime.TryParse(Value.ToString(), out DateTime date))
+                            {
+                                return date;
+                            }
+                            else
+                            {
+                                throw new InvalidCastException();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw new InvalidCastException();
+                    }
+                }
+                else
+                {
+                    throw new InvalidCastException();
+                }
+            }
+        }
 
         public string Text { get; set; }
 
@@ -42,7 +79,7 @@ namespace Bysxiang.UipathExcelEx.Models
             EndPosition = new CellPosition(mergeArea.Row + mergeArea.Rows.Count - 1,
                 mergeArea.Column + mergeArea.Columns.Count - 1);
             Value = firstCell.Value ?? "";
-            Text =  firstCell.Text?.ToString() ?? "";
+            Text = firstCell.Text?.ToString() ?? "";
             int colorVal = Convert.ToInt32(range.DisplayFormat.Interior.Color);
             BackgroundColor = ColorTranslator.FromOle(colorVal);
         }
@@ -143,6 +180,32 @@ namespace Bysxiang.UipathExcelEx.Models
         public object Clone()
         {
             return new RowColumnInfo(this);
+        }
+
+        public bool TryGetDateTimeValue(out DateTime dateTime)
+        {
+            try
+            {
+                dateTime = DateTimeValue;
+                return true;
+            }
+            catch (InvalidCastException)
+            {
+                dateTime = DateTime.MinValue;
+                return false;
+            }
+        }
+
+        public bool ValueEquals(DateTime dateTime)
+        {
+            if (this.TryGetDateTimeValue(out DateTime d))
+            {
+                return d.Equals(dateTime);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static bool operator >(RowColumnInfo left, RowColumnInfo right)
