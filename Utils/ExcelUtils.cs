@@ -109,6 +109,7 @@ namespace Bysxiang.UipathExcelEx.Utils
                 MarshalUtils.ReleaseComObject(ref app);
                 
                 excel.Range result = null;
+                string firstAddress = "";
                 do
                 {
                     result = regionRng.Find(What: search, After: afterRng, LookIn: excel.XlFindLookIn.xlValues, 
@@ -118,14 +119,10 @@ namespace Bysxiang.UipathExcelEx.Utils
                         //Console.WriteLine("释放1");
                         //MarshalUtils.ReleaseComObject(ref afterRng);
                     }
-                    if (result == null)
-                    {
-                        break;
-                    }
-                    else
+                    if (result != null)
                     {
                         RowColumnInfo resultCell = new RowColumnInfo(result);
-                        if (resultCell <= afterCell)
+                        if (firstAddress == result.Address || resultCell <= afterCell)
                         {
                             //Console.WriteLine("释放2");
                             //MarshalUtils.ReleaseComObject(ref result);
@@ -136,8 +133,12 @@ namespace Bysxiang.UipathExcelEx.Utils
                             resultRng = result;
                             return resultCell;
                         }
-                        afterRng = result;
+                        if (firstAddress == "")
+                        {
+                            firstAddress = result.Address;
+                        }
                     }
+                    afterRng = result;
                 }
                 while (result != null);
 
