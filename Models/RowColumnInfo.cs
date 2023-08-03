@@ -19,34 +19,26 @@ namespace Bysxiang.UipathExcelEx.Models
         {
             get
             {
-
-                if (Value != null)
+                if (Value.GetType() == typeof(DateTime))
                 {
-                    if (Value.GetType() == typeof(DateTime))
+                    return (DateTime)Value;
+                }
+                else if (Value.GetType() == typeof(double))
+                {
+                    try
                     {
-                        return (DateTime)Value;
+                        return DateTime.FromOADate((double)Value);
                     }
-                    else if (Value.GetType() == typeof(double))
+                    catch (OverflowException)
                     {
-                        try
+                        if (DateTime.TryParse(Value.ToString(), out DateTime date))
                         {
-                            return DateTime.FromOADate((double)Value);
+                            return date;
                         }
-                        catch (OverflowException)
+                        else
                         {
-                            if (DateTime.TryParse(Value.ToString(), out DateTime date))
-                            {
-                                return date;
-                            }
-                            else
-                            {
-                                throw new InvalidCastException();
-                            }
+                            throw new InvalidCastException();
                         }
-                    }
-                    else
-                    {
-                        throw new InvalidCastException();
                     }
                 }
                 else
@@ -184,12 +176,33 @@ namespace Bysxiang.UipathExcelEx.Models
 
         public bool TryGetDateTimeValue(out DateTime dateTime)
         {
-            try
+            if (Value.GetType() == typeof(DateTime))
             {
-                dateTime = DateTimeValue;
+                dateTime = (DateTime)Value;
                 return true;
             }
-            catch (InvalidCastException)
+            else if (Value.GetType() == typeof(double))
+            {
+                try
+                {
+                    dateTime = DateTime.FromOADate((double)Value);
+                    return true;
+                }
+                catch (OverflowException)
+                {
+                    if (DateTime.TryParse(Value.ToString(), out DateTime date))
+                    {
+                        dateTime = date;
+                        return true;
+                    }
+                    else
+                    {
+                        dateTime = DateTime.MinValue;
+                        return false;
+                    }
+                }
+            }
+            else
             {
                 dateTime = DateTime.MinValue;
                 return false;
