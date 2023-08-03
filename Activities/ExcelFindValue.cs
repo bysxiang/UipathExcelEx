@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Activities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UiPath.Excel;
 using Bysxiang.UipathExcelEx.Attributes;
@@ -56,20 +53,22 @@ namespace Bysxiang.UipathExcelEx.Activities
         {
             string rangeStr = RangeStr.Get(context);
             string search = Search.Get(context);
+            
             string afterStr = AfterCell.Get(context);
             int whichNum = WhichNum.Get(context);
             Func<RowColumnInfo, string, bool> func = MatchFunc.Get(context);
-            if (func == null)
-            {
-                func = (cell, s) => cell.IsValid && (cell.Value ?? "").ToString().Equals(s);
-            }
-
+            
             return Task.Run(() =>
             {
                 if (string.IsNullOrWhiteSpace(rangeStr))
                 {
                     throw new ExcelException(Excel_Activities.ExcelRangeEmptyException);
                 }
+                if (func == null)
+                {
+                    func = (cell, s) => cell.IsValid && cell.Value.ToString().Equals(s);
+                }
+
                 excel.Worksheet ws = workbook.CurrentWorksheet;
                 excel.Range regionRng = null;
                 try
