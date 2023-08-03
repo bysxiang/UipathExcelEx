@@ -25,6 +25,8 @@
 
 ExcelSizeInfo： 描述Excel使用范围情况
 
+属性
+
 - Row 行号
 - Column 列号
 - RowCount 行数量
@@ -32,6 +34,12 @@ ExcelSizeInfo： 描述Excel使用范围情况
 - ColumnName 开始列名(如B)
 - EndColumnName 尾列列名(如AA)
 - FullAddress 使用区域的范围(如 A1:AA5)
+- DateTimeValue 将Value转换为DateTime，若转换失败，将抛出`InvalidCastException`，应仅在确认当前单元格是DateTime单元格才执行此操作。
+
+方法
+
+- TryGetDateTimeValue 尝试转换为DateTime
+- ValueEquals 判断值是否匹配
 
 WorksheetInfo：描述Sheet
 
@@ -103,6 +111,8 @@ SpecialCellType ： 描述单元格类型的枚举
 - CellList 获取的结果List，若没有，则返回空集合。仅会包含合并区域的第一个单元格。
 
 ##### ExcelFindValue 查找Excel指定范围单元格的值
+
+> 此组件使用VSTO中`Range.Find`进行搜索，因此它支持普通的文本搜索，通配符搜索，搜索日期等等。如果使用了通配符或搜索日期，则必须提供MatchFunc参数，否则无法成功找到要搜索的值。
 
 - RangeStr 查找的范围，不能为空或空字符串
 - Search 要搜索的值，支持Excel通配符搜索，如果使用了通配符，则必须提供MatchFunc参数，否则不会找到任何值。
