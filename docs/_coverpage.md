@@ -1,4 +1,4 @@
-![logo](_media/icon.svg)
+<!-- ![logo](_media/icon.svg) -->
 
 # Excel.UipathEx.Activities <small>1.1.0</small>
 

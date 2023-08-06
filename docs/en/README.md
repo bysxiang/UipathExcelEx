@@ -5,11 +5,11 @@
 - [background](#background)
 - [Install](#Install)
 - [Usage](#Usage)
-- [Related projects（optional）](#Related%20projects)
-- [Main project manager](#Main%20project%20manager)
-- [Mode of participation and contribution](#Mode%20of%20participation%20and%20contribution)
+- [Related projects（optional）](#Related-projects)
+- [Main project manager](#Main-project-manager)
+- [Mode of participation and contribution](#Mode-of-participation-and-contribution)
     - [Contributor](#Contributor)
-- [Open source agreement](#Open%source%agreement)
+- [Open source agreement](#Open-source-agreement)
 
 ## background
 
