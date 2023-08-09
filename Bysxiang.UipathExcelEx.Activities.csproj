@@ -8,7 +8,7 @@
 		<Title>Bysxiang.ExcelEx.Activities</Title>
 		<Description>Extend the function of Uipath.Excel.Activities to support complex Excel cell data.</Description>
 		<PackageTags>Uipath.Excel.Activities FindValue ExcelReadRange</PackageTags>
-		<PackageProjectUrl>https://github.com/bysxiang/Bysxiang.UipathExcelEx.Activities</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/bysxiang/UipathExcelEx</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<UseWpf>true</UseWpf>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
