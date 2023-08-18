@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop" ToolsVersion="Current">
 	<PropertyGroup>
 		<TargetFrameworks>net461;net5.0-windows7.0;</TargetFrameworks>
-		<AssemblyName>Bysxiang.UipathExcelEx.Activities</AssemblyName>
+		<AssemblyName>Bysxiang.ExcelEx.Activities</AssemblyName>
 		<RootNamespace>Bysxiang.UipathExcelEx</RootNamespace>
-		<Version>1.1.0</Version>
+		<Version>1.1.1</Version>
 		<Authors>bysxiang</Authors>
 		<Title>Bysxiang.ExcelEx.Activities</Title>
 		<Description>Extend the function of Uipath.Excel.Activities to support complex Excel cell data.</Description>
