@@ -193,4 +193,7 @@
   <data name="ExcelFindValue_AfterCell" xml:space="preserve">
     <value>在单元格之后搜索</value>
   </data>
+  <data name="ExcelFindValues_Name" xml:space="preserve">
+    <value>查找一组Excel值</value>
+  </data>
 </root>

@@ -106,6 +106,15 @@ namespace Bysxiang.UipathExcelEx.Resources {
         }
         
         /// <summary>
+        ///   查找类似 ExcelFindValues 的本地化字符串。
+        /// </summary>
+        internal static string ExcelFindValues_Name {
+            get {
+                return ResourceManager.GetString("ExcelFindValues_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 ExcelGetSheetInfos 的本地化字符串。
         /// </summary>
         internal static string ExcelGetSheetInfos_Name {

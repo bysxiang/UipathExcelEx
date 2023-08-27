@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExcelFindValues_Name" xml:space="preserve">
+    <value>ExcelFindValues</value>
+  </data>
   <data name="ExcelFindValue_AfterCell" xml:space="preserve">
     <value>search after cell</value>
   </data>
