@@ -2,21 +2,22 @@
 using Bysxiang.UipathExcelEx.Models;
 using Bysxiang.UipathExcelEx.Resources;
 using Bysxiang.UipathExcelEx.Utils;
+using Bysxiang.UipathExcelEx.Views;
 using System;
 using System.Activities;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using UiPath.Excel;
 using UiPath.Excel.Activities;
-using UiPath.Excel.Helpers;
 using excel = Microsoft.Office.Interop.Excel;
 
 namespace Bysxiang.UipathExcelEx.Activities
 {
     [LocalDisplayName("ExcelFindValues_Name")]
+    [Designer(typeof(ExcelFindValuesView))]
     public class ExcelFindValues : ExcelExInteropActivity<Dictionary<string, RowColumnInfo>>
     {
         [RequiredArgument]
@@ -27,19 +28,20 @@ namespace Bysxiang.UipathExcelEx.Activities
         [RequiredArgument]
         [LocalizedCategory("Input")]
         [LocalDisplayName("ExcelFindValue_Search")]
-        public InArgument<ISet<string>> Searchs { get; set; }
+        public InArgument<IEnumerable<string>> Searchs { get; set; }
 
         [LocalizedCategory("Input")]
         [LocalDisplayName("ExcelFindValue_MatchFunc")]
         public InArgument<Func<RowColumnInfo, string, bool>> MatchFunc { get; set; }
 
         [LocalizedCategory("Output")]
+        [LocalDisplayName("ExcelResult")]
         public OutArgument<Dictionary<string, RowColumnInfo>> Result { get; set; }
 
         protected override Task<Dictionary<string, RowColumnInfo>> ExecuteAsync(AsyncCodeActivityContext context, WorkbookApplication workbook)
         {
             string rangeStr = RangeStr.Get(context);
-            ISet<string> searchs = Searchs.Get(context);
+            IEnumerable<string> searchs = Searchs.Get(context).Distinct();
             Func<RowColumnInfo, string, bool> func = MatchFunc.Get(context);
 
             Dictionary<string, RowColumnInfo> dict = new Dictionary<string, RowColumnInfo>();

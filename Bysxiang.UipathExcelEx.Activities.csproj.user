@@ -8,11 +8,17 @@
     <Compile Update="Activities\ExcelGetSheetInfos.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ExcelFindValuesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\ExcelSpecialCellsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\ExcelFindValuesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\ExcelSpecialCellsView.xaml">
       <SubType>Designer</SubType>
     </Page>
