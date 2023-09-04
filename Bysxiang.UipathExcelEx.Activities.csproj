@@ -5,7 +5,7 @@
 		<RootNamespace>Bysxiang.UipathExcelEx</RootNamespace>
 		<Version>1.1.1</Version>
 		<Authors>bysxiang</Authors>
-		<Title>Bysxiang.ExcelEx.Activities</Title>
+		<Title>Bysxiang.UipathExcelEx.Activities</Title>
 		<Description>Extend the function of Uipath.Excel.Activities to support complex Excel cell data.</Description>
 		<PackageTags>Uipath.Excel.Activities FindValue ExcelReadRange</PackageTags>
 		<PackageProjectUrl>https://github.com/bysxiang/UipathExcelEx</PackageProjectUrl>
