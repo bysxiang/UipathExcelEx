@@ -3,7 +3,7 @@
 		<TargetFrameworks>net461;net5.0-windows7.0;</TargetFrameworks>
 		<AssemblyName>Bysxiang.ExcelEx.Activities</AssemblyName>
 		<RootNamespace>Bysxiang.UipathExcelEx</RootNamespace>
-		<Version>1.1.1</Version>
+		<Version>1.1.2</Version>
 		<Authors>bysxiang</Authors>
 		<Title>Bysxiang.UipathExcelEx.Activities</Title>
 		<Description>Extend the function of Uipath.Excel.Activities to support complex Excel cell data.</Description>
@@ -42,7 +42,7 @@
 		<PackageReference Include="UiPath.Excel.Activities" Version="2.8.6" PrivateAssets="All" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net5.0-windows7.0' ">
-		<PackageReference Include="System.Drawing.Common" Version="[5.0.0,6)" PrivateAssets="All" />
+		<PackageReference Include="System.Drawing.Common" Version="[5.0.3,6)" PrivateAssets="All" />
 		<PackageReference Include="System.Activities" Version="[5.0.0-20210730-02,6)" PrivateAssets="All" />
 		<PackageReference Include="System.Activities.Core.Presentation" Version="[1.0.0-alpha003,2)" PrivateAssets="All" />
 		<PackageReference Include="UiPath.Excel.Activities" Version="2.11.4" PrivateAssets="All" />
